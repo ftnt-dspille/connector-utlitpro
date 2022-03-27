@@ -1,9 +1,9 @@
 {
-    "name": "ultiproCustom",
+    "name": "ultipro",
     "version": "0.1.0",
-    "label": "Ultipro-export",
+    "label": "Ultipro",
     "description": "This connector is capable of querying Ultipro for Employee, Job, and Phone details",
-    "publisher": "",
+    "publisher": "Fortinet-CSE",
     "icon_small_name": "UltiproIcon.png",
     "icon_large_name": "UltiproIconText.png",
     "category": "utilities",
@@ -110,7 +110,7 @@
             "enabled": true,
             "parameters": [
                 {
-                    "title": "PageNumber",
+                    "title": "Page Number",
                     "type": "text",
                     "name": "pageNumber",
                     "required": true,
@@ -120,7 +120,7 @@
                 },
                 {
                     "title": "Page Size",
-                    "type": "text",
+                    "type": "integer",
                     "name": "pageSize",
                     "required": true,
                     "visible": true,
