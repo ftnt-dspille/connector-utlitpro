@@ -1,0 +1,482 @@
+{
+  "type": "workflow_collections",
+  "data": [
+    {
+      "@context": "/api/3/contexts/WorkflowCollection",
+      "@type": "WorkflowCollection",
+      "name": "001 Test",
+      "description": null,
+      "visible": true,
+      "image": null,
+      "id": 21,
+      "createDate": 1628789735,
+      "modifyDate": 1632512573,
+      "recordTags": [],
+      "workflows": [
+        {
+          "@type": "Workflow",
+          "triggerLimit": null,
+          "name": "UltiPro - Get All Employees",
+          "aliasName": null,
+          "tag": null,
+          "description": "Verified Working",
+          "isActive": true,
+          "debug": true,
+          "singleRecordExecution": false,
+          "remoteExecutableFlag": false,
+          "parameters": [],
+          "synchronous": false,
+          "lastModifyDate": 1639075477,
+          "collection": "/api/3/workflow_collections/a73d5a64-9960-4138-9405-a75303a6ef7c",
+          "versions": [],
+          "triggerStep": "/api/3/workflow_steps/a7c523ee-2b6f-4167-b61f-387236aeae0e",
+          "steps": [
+            {
+              "@type": "WorkflowStep",
+              "name": "Start",
+              "description": null,
+              "arguments": {
+                "route": "a39dc5ae-1db5-402e-9116-52c923e7a575",
+                "resources": [
+                  "alerts"
+                ],
+                "inputVariables": [],
+                "step_variables": {
+                  "input": {
+                    "params": [],
+                    "records": "{{vars.input.records}}"
+                  }
+                },
+                "executeButtonText": "Execute",
+                "noRecordExecution": true,
+                "singleRecordExecution": false
+              },
+              "status": null,
+              "top": "40",
+              "left": "40",
+              "stepType": "/api/3/workflow_step_types/f414d039-bb0d-4e59-9c39-a8f1e880b18a",
+              "uuid": "a7c523ee-2b6f-4167-b61f-387236aeae0e",
+              "id": 4711
+            },
+            {
+              "@type": "WorkflowStep",
+              "name": "Get Employees",
+              "description": null,
+              "arguments": {
+                "name": "Ultipro CUSTOM",
+                "config": "d9074674-2b99-4d5f-9989-d0e6a87b0f6d",
+                "params": {
+                  "pageSize": "1000",
+                  "pageNumber": "all"
+                },
+                "version": "0.0.5",
+                "connector": "ultiproCustom",
+                "operation": "getAllCompanyEmployees",
+                "operationTitle": "Get All Employees",
+                "pickFromTenant": false,
+                "step_variables": []
+              },
+              "status": null,
+              "top": "280",
+              "left": "180",
+              "stepType": "/api/3/workflow_step_types/0bfed618-0316-11e7-93ae-92361f002671",
+              "uuid": "f840e6bc-17ef-4a82-b80d-fb82a2e18ed1",
+              "id": 4712
+            }
+          ],
+          "routes": [
+            {
+              "@type": "WorkflowRoute",
+              "name": "Start -> Get Employees",
+              "targetStep": "/api/3/workflow_steps/f840e6bc-17ef-4a82-b80d-fb82a2e18ed1",
+              "sourceStep": "/api/3/workflow_steps/a7c523ee-2b6f-4167-b61f-387236aeae0e",
+              "label": null,
+              "isExecuted": false,
+              "uuid": "96783283-86a6-46f9-89f9-4fdf6c1d9f90"
+            }
+          ],
+          "priority": "/api/3/picklists/2b563c61-ae2c-41c0-a85a-c9709585e3f2",
+          "uuid": "0565186a-71ca-4dd9-97a3-09ce059522b3",
+          "recordTags": [],
+          "id": 1538,
+          "createUser": "/api/3/people/3451141c-bac6-467c-8d72-85e0fab569ce",
+          "createDate": 1638472012,
+          "modifyUser": "/api/3/people/3451141c-bac6-467c-8d72-85e0fab569ce",
+          "modifyDate": 1639075477,
+          "owners": [],
+          "isPrivate": false
+        },
+        {
+          "@type": "Workflow",
+          "triggerLimit": null,
+          "name": "UltiPro - Get Phone Details - All",
+          "aliasName": null,
+          "tag": null,
+          "description": "Verified working",
+          "isActive": true,
+          "debug": true,
+          "singleRecordExecution": false,
+          "remoteExecutableFlag": false,
+          "parameters": [],
+          "synchronous": false,
+          "lastModifyDate": 1639682723,
+          "collection": "/api/3/workflow_collections/a73d5a64-9960-4138-9405-a75303a6ef7c",
+          "versions": [],
+          "triggerStep": "/api/3/workflow_steps/d4a6de85-6f54-40d3-80e8-583683e39f24",
+          "steps": [
+            {
+              "@type": "WorkflowStep",
+              "name": "Start",
+              "description": null,
+              "arguments": {
+                "route": "fd681c6c-58ac-4564-8f66-466f95fbd7c0",
+                "resources": [
+                  "alerts"
+                ],
+                "inputVariables": [],
+                "step_variables": {
+                  "input": {
+                    "params": [],
+                    "records": "{{vars.input.records}}"
+                  }
+                },
+                "executeButtonText": "Execute",
+                "noRecordExecution": true,
+                "singleRecordExecution": false
+              },
+              "status": null,
+              "top": "40",
+              "left": "40",
+              "stepType": "/api/3/workflow_step_types/f414d039-bb0d-4e59-9c39-a8f1e880b18a",
+              "uuid": "d4a6de85-6f54-40d3-80e8-583683e39f24",
+              "id": 4738
+            },
+            {
+              "@type": "WorkflowStep",
+              "name": "Get All Phones",
+              "description": null,
+              "arguments": {
+                "name": "Ultipro CUSTOM",
+                "config": "d9074674-2b99-4d5f-9989-d0e6a87b0f6d",
+                "params": {
+                  "pageSize": "1000",
+                  "pageNumber": "all"
+                },
+                "version": "0.0.9",
+                "connector": "ultiproCustom",
+                "operation": "findEmployeePhone",
+                "operationTitle": "Find Employee Phones",
+                "pickFromTenant": false,
+                "step_variables": []
+              },
+              "status": null,
+              "top": "40",
+              "left": "600",
+              "stepType": "/api/3/workflow_step_types/0bfed618-0316-11e7-93ae-92361f002671",
+              "uuid": "adcf7674-d6f3-49c9-ba2c-9ec05b76d124",
+              "id": 4903
+            }
+          ],
+          "routes": [
+            {
+              "@type": "WorkflowRoute",
+              "name": "Start -> Get All Phones",
+              "targetStep": "/api/3/workflow_steps/adcf7674-d6f3-49c9-ba2c-9ec05b76d124",
+              "sourceStep": "/api/3/workflow_steps/d4a6de85-6f54-40d3-80e8-583683e39f24",
+              "label": null,
+              "isExecuted": false,
+              "uuid": "bafcc43e-9e2b-413b-bf0c-b21a0e700326"
+            }
+          ],
+          "priority": "/api/3/picklists/2b563c61-ae2c-41c0-a85a-c9709585e3f2",
+          "uuid": "2443155c-8761-497c-9c91-78e4d1222ef8",
+          "recordTags": [],
+          "id": 1548,
+          "createUser": "/api/3/people/3451141c-bac6-467c-8d72-85e0fab569ce",
+          "createDate": 1638501525,
+          "modifyUser": "/api/3/people/3451141c-bac6-467c-8d72-85e0fab569ce",
+          "modifyDate": 1639682723,
+          "owners": [],
+          "isPrivate": false
+        },
+        {
+          "@type": "Workflow",
+          "triggerLimit": null,
+          "name": "UltiPro - Get Person Details",
+          "aliasName": null,
+          "tag": null,
+          "description": "Verified working",
+          "isActive": true,
+          "debug": true,
+          "singleRecordExecution": false,
+          "remoteExecutableFlag": false,
+          "parameters": [],
+          "synchronous": false,
+          "lastModifyDate": 1639671360,
+          "collection": "/api/3/workflow_collections/a73d5a64-9960-4138-9405-a75303a6ef7c",
+          "versions": [],
+          "triggerStep": "/api/3/workflow_steps/7beaa6ab-7bc6-4181-8038-7c6aaad2d0be",
+          "steps": [
+            {
+              "@type": "WorkflowStep",
+              "name": "Start",
+              "description": null,
+              "arguments": {
+                "route": "c61666b7-b8ab-41d5-a196-a332b17027bf",
+                "resources": [
+                  "alerts"
+                ],
+                "inputVariables": [],
+                "step_variables": {
+                  "input": {
+                    "params": [],
+                    "records": "{{vars.input.records}}"
+                  }
+                },
+                "executeButtonText": "Execute",
+                "noRecordExecution": true,
+                "singleRecordExecution": false
+              },
+              "status": null,
+              "top": "40",
+              "left": "40",
+              "stepType": "/api/3/workflow_step_types/f414d039-bb0d-4e59-9c39-a8f1e880b18a",
+              "uuid": "7beaa6ab-7bc6-4181-8038-7c6aaad2d0be",
+              "id": 4857
+            },
+            {
+              "@type": "WorkflowStep",
+              "name": "Get Person Details",
+              "description": null,
+              "arguments": {
+                "name": "Ultipro CUSTOM",
+                "config": "d9074674-2b99-4d5f-9989-d0e6a87b0f6d",
+                "params": {
+                  "companyId": "CHP48"
+                },
+                "version": "0.0.9",
+                "connector": "ultiproCustom",
+                "operation": "getPersonDetails",
+                "operationTitle": "Get Person Details",
+                "pickFromTenant": false,
+                "step_variables": []
+              },
+              "status": null,
+              "top": "320",
+              "left": "100",
+              "stepType": "/api/3/workflow_step_types/0bfed618-0316-11e7-93ae-92361f002671",
+              "uuid": "580e6e2e-b641-4ac1-9352-1fa518d43f68",
+              "id": 4860
+            }
+          ],
+          "routes": [
+            {
+              "@type": "WorkflowRoute",
+              "name": "Start -> Get Person Details",
+              "targetStep": "/api/3/workflow_steps/580e6e2e-b641-4ac1-9352-1fa518d43f68",
+              "sourceStep": "/api/3/workflow_steps/7beaa6ab-7bc6-4181-8038-7c6aaad2d0be",
+              "label": null,
+              "isExecuted": false,
+              "uuid": "365f96e9-8569-4487-990d-aded16518de1"
+            }
+          ],
+          "priority": "/api/3/picklists/2b563c61-ae2c-41c0-a85a-c9709585e3f2",
+          "uuid": "b2f06911-1f94-4a93-b3d4-f67e29acf51d",
+          "recordTags": [],
+          "id": 1573,
+          "createUser": "/api/3/people/3451141c-bac6-467c-8d72-85e0fab569ce",
+          "createDate": 1639070494,
+          "modifyUser": "/api/3/people/3451141c-bac6-467c-8d72-85e0fab569ce",
+          "modifyDate": 1639671360,
+          "owners": [],
+          "isPrivate": false
+        },
+        {
+          "@type": "Workflow",
+          "triggerLimit": null,
+          "name": "UltiPro - Get Phone Details by EmployeeId",
+          "aliasName": null,
+          "tag": null,
+          "description": "Verified Working",
+          "isActive": true,
+          "debug": true,
+          "singleRecordExecution": false,
+          "remoteExecutableFlag": false,
+          "parameters": [],
+          "synchronous": false,
+          "lastModifyDate": 1639671626,
+          "collection": "/api/3/workflow_collections/a73d5a64-9960-4138-9405-a75303a6ef7c",
+          "versions": [],
+          "triggerStep": "/api/3/workflow_steps/976ce335-78fe-4c69-bb4d-47e1500871a0",
+          "steps": [
+            {
+              "@type": "WorkflowStep",
+              "name": "Start",
+              "description": null,
+              "arguments": {
+                "route": "262ca952-880d-4b36-b95f-ec9967f3711c",
+                "resources": [
+                  "alerts"
+                ],
+                "inputVariables": [],
+                "step_variables": {
+                  "input": {
+                    "params": [],
+                    "records": "{{vars.input.records}}"
+                  }
+                },
+                "executeButtonText": "Execute",
+                "noRecordExecution": true,
+                "singleRecordExecution": false
+              },
+              "status": null,
+              "top": "40",
+              "left": "40",
+              "stepType": "/api/3/workflow_step_types/f414d039-bb0d-4e59-9c39-a8f1e880b18a",
+              "uuid": "976ce335-78fe-4c69-bb4d-47e1500871a0",
+              "id": 4304
+            },
+            {
+              "@type": "WorkflowStep",
+              "name": "Get Phone",
+              "description": null,
+              "arguments": {
+                "name": "Ultipro CUSTOM",
+                "config": "d9074674-2b99-4d5f-9989-d0e6a87b0f6d",
+                "params": {
+                  "employeeId": "001006"
+                },
+                "version": "0.0.9",
+                "connector": "ultiproCustom",
+                "operation": "getPhoneInformationByEmployeeIdentifier",
+                "operationTitle": "GetPhoneInformationByEmployeeIdentifier",
+                "pickFromTenant": false,
+                "step_variables": []
+              },
+              "status": null,
+              "top": "200",
+              "left": "40",
+              "stepType": "/api/3/workflow_step_types/0bfed618-0316-11e7-93ae-92361f002671",
+              "uuid": "a0e73dbd-4aa3-4508-9c87-335bca9bf1b6",
+              "id": 4557
+            }
+          ],
+          "routes": [
+            {
+              "@type": "WorkflowRoute",
+              "name": "Start -> Get Phone",
+              "targetStep": "/api/3/workflow_steps/a0e73dbd-4aa3-4508-9c87-335bca9bf1b6",
+              "sourceStep": "/api/3/workflow_steps/976ce335-78fe-4c69-bb4d-47e1500871a0",
+              "label": null,
+              "isExecuted": false,
+              "uuid": "71fbe58d-3ed7-40c1-ad76-b57ba7ececee"
+            }
+          ],
+          "priority": "/api/3/picklists/2b563c61-ae2c-41c0-a85a-c9709585e3f2",
+          "uuid": "e62f0d59-210e-48c4-be44-669f351b5f19",
+          "recordTags": [],
+          "id": 1401,
+          "createUser": "/api/3/people/3451141c-bac6-467c-8d72-85e0fab569ce",
+          "createDate": 1636039112,
+          "modifyUser": "/api/3/people/3451141c-bac6-467c-8d72-85e0fab569ce",
+          "modifyDate": 1639671626,
+          "owners": [],
+          "isPrivate": false
+        },
+        {
+          "@type": "Workflow",
+          "triggerLimit": null,
+          "name": "UltiPro - Get Employment Details",
+          "aliasName": null,
+          "tag": null,
+          "description": "Verified working",
+          "isActive": true,
+          "debug": true,
+          "singleRecordExecution": false,
+          "remoteExecutableFlag": false,
+          "parameters": [],
+          "synchronous": false,
+          "lastModifyDate": 1639685628,
+          "collection": "/api/3/workflow_collections/a73d5a64-9960-4138-9405-a75303a6ef7c",
+          "versions": [],
+          "triggerStep": "/api/3/workflow_steps/4a187f8c-f578-4638-b6b0-8daf38e2738b",
+          "steps": [
+            {
+              "@type": "WorkflowStep",
+              "name": "Start",
+              "description": null,
+              "arguments": {
+                "route": "4243b185-82a2-4c4f-af3e-a0f2c7f7ef59",
+                "resources": [
+                  "alerts"
+                ],
+                "inputVariables": [],
+                "step_variables": {
+                  "input": {
+                    "params": [],
+                    "records": "{{vars.input.records}}"
+                  }
+                },
+                "executeButtonText": "Execute",
+                "noRecordExecution": true,
+                "singleRecordExecution": false
+              },
+              "status": null,
+              "top": "40",
+              "left": "40",
+              "stepType": "/api/3/workflow_step_types/f414d039-bb0d-4e59-9c39-a8f1e880b18a",
+              "uuid": "4a187f8c-f578-4638-b6b0-8daf38e2738b",
+              "id": 4904
+            },
+            {
+              "@type": "WorkflowStep",
+              "name": "Get Employment Details",
+              "description": null,
+              "arguments": {
+                "name": "Ultipro CUSTOM",
+                "config": "d9074674-2b99-4d5f-9989-d0e6a87b0f6d",
+                "params": {
+                  "companyId": "CHP48"
+                },
+                "version": "0.0.9",
+                "connector": "ultiproCustom",
+                "operation": "getEmploymentDetails",
+                "operationTitle": "Get Employment Details",
+                "pickFromTenant": false,
+                "step_variables": []
+              },
+              "status": null,
+              "top": "320",
+              "left": "100",
+              "stepType": "/api/3/workflow_step_types/0bfed618-0316-11e7-93ae-92361f002671",
+              "uuid": "9e6fe764-d4df-45d7-8f41-f134cfa78804",
+              "id": 4905
+            }
+          ],
+          "routes": [
+            {
+              "@type": "WorkflowRoute",
+              "name": "Start -> Get Person Details",
+              "targetStep": "/api/3/workflow_steps/9e6fe764-d4df-45d7-8f41-f134cfa78804",
+              "sourceStep": "/api/3/workflow_steps/4a187f8c-f578-4638-b6b0-8daf38e2738b",
+              "label": null,
+              "isExecuted": false,
+              "uuid": "2675bea3-705a-459f-b417-b5c618339fd5"
+            }
+          ],
+          "priority": "/api/3/picklists/2b563c61-ae2c-41c0-a85a-c9709585e3f2",
+          "uuid": "fdff9083-7a9d-430b-9e23-ed67435ff7ce",
+          "recordTags": [],
+          "id": 1590,
+          "createUser": "/api/3/people/3451141c-bac6-467c-8d72-85e0fab569ce",
+          "createDate": 1639685096,
+          "modifyUser": "/api/3/people/3451141c-bac6-467c-8d72-85e0fab569ce",
+          "modifyDate": 1639685627,
+          "owners": [],
+          "isPrivate": false
+        }
+      ]
+    }
+  ],
+  "exported_tags": []
+}
