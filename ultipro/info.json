@@ -10,12 +10,14 @@
     "configuration": {
         "fields": [
             {
-                "title": "WSDL URL",
+                "title": "Server URL",
                 "type": "text",
-                "name": "wsdl",
+                "name": "server_url",
                 "required": true,
                 "visible": true,
-                "editable": true
+                "editable": true,
+                "description": "Provide the url found in the API settings of Ultipro",
+                "placeholder": "https://service5.ultipro.com"
             },
             {
                 "title": "Username",
@@ -23,7 +25,8 @@
                 "name": "username",
                 "required": true,
                 "visible": true,
-                "editable": true
+                "editable": true,
+                "description": "API Username used to authenticate to UltiPro"
             },
             {
                 "title": "Password",
@@ -31,7 +34,8 @@
                 "name": "password",
                 "required": true,
                 "visible": true,
-                "editable": true
+                "editable": true,
+                "description": "API Password used to authenticate to UltiPro"
             },
             {
                 "title": "Customer API Key",
@@ -40,7 +44,9 @@
                 "required": true,
                 "visible": true,
                 "editable": true,
-                "value": ""
+                "value": "",
+                "description": "Customer API Key used to authenticate to UltiPro",
+                "tooltip": "This is also referred to as Client API Key "
             },
             {
                 "title": "User API Key",
@@ -49,16 +55,8 @@
                 "required": true,
                 "visible": true,
                 "editable": true,
-                "value": ""
-            },
-            {
-                "title": "Company ID",
-                "type": "text",
-                "name": "companyID",
-                "required": false,
-                "visible": true,
-                "editable": true,
-                "value": ""
+                "value": "",
+                "description": "User API Key used to authenticate to UltiPro"
             },
             {
                 "title": "Verify SSL",
@@ -68,17 +66,7 @@
                 "visible": true,
                 "editable": true,
                 "value": false
-            },
-            {
-                "title": "Raw Response",
-                "type": "checkbox",
-                "name": "raw_response",
-                "required": false,
-                "visible": true,
-                "editable": true,
-                "value": false
             }
-        ]
     },
     "operations": [
         {

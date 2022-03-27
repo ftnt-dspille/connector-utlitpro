@@ -16,27 +16,16 @@ class Ultipro(object):
     """
 
     def __init__(self, soap_config, *args, **kwargs):
-        """
-         Creates a new soap connector. Requires a WSDL file that describes the
-         soap service.
 
-        :param str wsdl_path: url to WSDL file
-        :return: An object that can be used to make soap calls
-        :rtype: SoapConnector
-        :raises requests.exceptions.InvalidSchema: if no wsdl file could be
-            fetched
-        """
-        self.wsdl_path = soap_config["wsdl"]
+        self.server_url = soap_config["server_url"].strip("/")
         self.username = soap_config["username"]
         self.password = soap_config["password"]
         self.clientApiKey = soap_config["clientAPIKey"]
         self.userApiKey = soap_config["userAPIKey"]
-        self.companyId = soap_config["companyID"]
         self.verify_ssl = soap_config.get("verify_ssl", False)
-        self.raw_response = soap_config.get("raw_response", False)
-        self.authenticate()
+        self.__authenticate()
 
-    def authenticate(self):
+    def __authenticate(self):
         login_header = {
             "UserName": self.username,
             "Password": self.password,
@@ -46,7 +35,7 @@ class Ultipro(object):
 
         try:
             # Log in and get session token
-            client = zeep.Client("https://service5.ultipro.com/services/LoginService")
+            client = zeep.Client(f"{self.server_url}/services/LoginService")
             result = client.service.Authenticate(_soapheaders=login_header)
             self.ultiProToken = result["Token"]
 
@@ -55,6 +44,45 @@ class Ultipro(object):
         except Exception as Err:
             logger.error(Err)
             raise ConnectorError(Err)
+
+    def __make_xml_request(self, method="POST", data={}, headers={}):
+        try:
+            response = requests.request(
+                method,
+                self.server_url,
+                data=data,
+                headers=headers,
+                verify=self.verify_ssl,
+            )
+            if response.ok:
+                response_dict = xmltodict.parse(response.text)
+                return response_dict
+                # status = response_dict.get("response").get("@status")
+                # if status == "success":
+                #     return response_dict.get("response").get("result")
+                # else:
+                #     raise ConnectorError(response.text)
+            elif response.status_code == 401:
+                logger.error("Unauthorized: Invalid credentials")
+                raise ConnectorError("Unauthorized: Invalid credentials")
+            else:
+                raise ConnectorError(response.text)
+        except requests.exceptions.SSLError as e:
+            logger.exception("{}".format(e))
+            raise ConnectorError("{}".format("SSL certificate validation failed"))
+        except requests.exceptions.ConnectionError as e:
+            logger.exception("{}".format(e))
+            raise ConnectorError(
+                "{}".format(
+                    "The request timed out while trying to connect to the remote server"
+                )
+            )
+        except Exception as e:
+            logger.exception("{}".format(e))
+            raise ConnectorError("{}".format(e))
+
+    def __make_api_request(self, data, method="POST"):
+        pass
 
     def _getPhoneInformationByEmployeeIdentifier(self, params):
         employeeId = params.get("employeeId")
@@ -76,41 +104,44 @@ class Ultipro(object):
                     </s:Body>
                     </s:Envelope>"""
         try:
-            response = requests.post(
-                "https://service5.ultipro.com/services/EmployeePhoneInformation",
-                data=body,
-                headers=headers,
-            )
-            if response.ok:
-                response_dict = xmltodict.parse(response.text)
-                if (
-                    response_dict["s:Envelope"]["s:Body"][
-                        "GetPhoneInformationByEmployeeIdentifierResponse"
-                    ]["GetPhoneInformationByEmployeeIdentifierResult"][
-                        "b:OperationResult"
-                    ][
-                        "b:Success"
-                    ]
-                    == "true"
-                ):
-                    return response_dict
-                else:
-                    raise ConnectorError(response.text)
+            result = self.__make_xml_request(method="POST", data=body, headers=headers)
+            # response = requests.post(
+            #     f"{self.server_url}/services/EmployeePhoneInformation",
+            #     data=body,
+            #     headers=headers,
+            # )
+            # if response.ok:
+            #     response_dict = xmltodict.parse(response.text)
+            if (
+                result["s:Envelope"]["s:Body"][
+                    "GetPhoneInformationByEmployeeIdentifierResponse"
+                ]["GetPhoneInformationByEmployeeIdentifierResult"]["b:OperationResult"][
+                    "b:Success"
+                ]
+                == "true"
+            ):
+                return result
             else:
-                raise ConnectorError(response.text)
-        except requests.exceptions.SSLError as e:
-            logger.exception("{}".format(e))
-            raise ConnectorError("{}".format("SSL certificate validation failed"))
-        except requests.exceptions.ConnectionError as e:
-            logger.exception("{}".format(e))
-            raise ConnectorError(
-                "{}".format(
-                    "The request timed out while trying to connect to the remote server"
-                )
-            )
-        except Exception as e:
-            logger.exception("{}".format(e))
-            raise ConnectorError("{}".format(e))
+                raise ConnectorError(result)
+        except:
+            logger.debug(f"Failed to Get Phone Information,BODY:{body}")
+            raise ConnectorError("Failed to commit config changes")
+
+        #     else:
+        #         raise ConnectorError(response.text)
+        # except requests.exceptions.SSLError as e:
+        #     logger.exception("{}".format(e))
+        #     raise ConnectorError("{}".format("SSL certificate validation failed"))
+        # except requests.exceptions.ConnectionError as e:
+        #     logger.exception("{}".format(e))
+        #     raise ConnectorError(
+        #         "{}".format(
+        #             "The request timed out while trying to connect to the remote server"
+        #         )
+        #     )
+        # except Exception as e:
+        #     logger.exception("{}".format(e))
+        #     raise ConnectorError("{}".format(e))
 
     def __findEmployeePhone(self, pageNumber, pageSize):
         # This function will perform a generic search to return all people in the company
